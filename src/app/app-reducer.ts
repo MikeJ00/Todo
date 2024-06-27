@@ -9,7 +9,7 @@ export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 const slice = createSlice({
     name:"app",
     initialState:{
-        status: 'idle',
+        status: 'idle' as RequestStatusType,
         error: null as string | null,
         isInitialized: false
     },
@@ -40,3 +40,4 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
 
 export const appReducer = slice.reducer
 export const appActions = slice.actions
+export type InitialStateType = ReturnType<typeof slice.getInitialState>
