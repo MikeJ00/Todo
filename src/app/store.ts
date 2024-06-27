@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 
 // ❗старая запись, с новыми версиями не работает
 //  const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-export const store = configureStore({reducer: rootReducer},)
+export const store = configureStore({reducer: rootReducer})
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
