@@ -38,10 +38,10 @@ const slice = createSlice({
             }
         },
         setTodolists:(state,action:PayloadAction<{todolists: Array<TodolistType>}>)=>{
-            // return action.payload.todolists.map(tl => ({...tl, filter: 'all', entityStatus: 'idle'}))
-            action.payload.todolists.forEach((tl)=>{
-                state.push({...tl, filter: 'all', entityStatus: 'idle'})
-            })
+            return action.payload.todolists.map(tl => ({...tl, filter: 'all', entityStatus: 'idle'}))
+            // action.payload.todolists.forEach((tl)=>{
+            //     state.push({...tl, filter: 'all', entityStatus: 'idle'})
+            // })
         },
     },
 })
