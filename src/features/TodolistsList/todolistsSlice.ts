@@ -44,9 +44,15 @@ const slice = createSlice({
             // })
         },
     },
+    selectors:{
+        selectTodo:(state) => state
+    }
 })
 export const todolistsReducer = slice.reducer
 export const todolistsActions = slice.actions
+export const todolistName = slice.name
+export const todolistsSelectors = slice.selectors
+
 
 // thunks
 export const fetchTodolistsTC = (): AppThunk => {
