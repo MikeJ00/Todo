@@ -5,7 +5,7 @@ import {
 } from './tasks-reducer'
 
 import {todolistsActions} from 'features/TodolistsList/todolistsSlice'
-import {TaskPriorities, TaskStatuses} from '../../api/todolists-api'
+import {TaskPriorities, TaskStatuses, TaskType} from '../../api/todolists-api'
 
 let startState: TasksStateType = {};
 beforeEach(() => {
@@ -135,6 +135,30 @@ test('tasks should be added for todolist', () => {
       "todolistId1"//принимаем
       );
 
+    const endState = tasksReducer({
+        "todolistId2": [],
+        "todolistId1": []
+    }, action)
+
+    expect(endState["todolistId1"].length).toBe(3)
+    expect(endState["todolistId2"].length).toBe(0)
+})
+
+test('tasks should be added for todolist2', () => {
+//минусы, нет типизиации, нужно делать вручную
+    type _FetchActionType = {
+        type:string,
+        payload:{
+            tasks:TaskType[],
+            todolistId:string
+        }
+    };
+    type FetchActionType = Omit<ReturnType<typeof tasksThunks.fetchTasks.fulfilled>,"meta">
+
+    const action:FetchActionType = {
+       type:tasksThunks.fetchTasks.fulfilled.type,
+        payload:{tasks:startState["todolistId1"], todolistId:"todolistId1"}
+    }
     const endState = tasksReducer({
         "todolistId2": [],
         "todolistId1": []
